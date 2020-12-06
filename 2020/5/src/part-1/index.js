@@ -20,8 +20,8 @@ Array.prototype.splitInHalf = function () {
 const range = (r) => [...Array(r).keys()];
 
 function getSeat(boardingPass) {
-  let rows = range(127);
-  let cols = range(7);
+  let rows = range(128);
+  let cols = range(8);
 
   for (const character of boardingPass) {
     if (character === 'F') {

@@ -20,8 +20,8 @@ Array.prototype.splitInHalf = function () {
 const range = (r) => [...Array(r).keys()];
 
 function getSeat(boardingPass) {
-  let rows = range(127);
-  let cols = range(7);
+  let rows = range(128);
+  let cols = range(8);
 
   for (const character of boardingPass) {
     if (character === 'F') {
@@ -35,22 +35,20 @@ function getSeat(boardingPass) {
     }
   }
 
-  return rows[0] * 8 + cols[0];
+  return Number((rows[0] * 8) + cols[0]);
 }
 
 const input = utils.readInputSync(
   path.resolve(__dirname, '../../resources/input.txt'),
 );
 
-const seats = input.map(getSeat);
+const seats = input.map(getSeat).sort((a, b) => b - a);
+
 const min = Math.min(...seats);
 const max = Math.max(...seats);
 
-const missing = [];
 for (let i = min; i <= max; i++) {
   if (!seats.includes(i)) {
-    missing.push(i);
+    console.log(i);
   }
 }
-
-console.log(missing);
